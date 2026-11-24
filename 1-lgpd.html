@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>LGPD | LeiMAM</title>
+        <link rel="icon" type="image/png" href="LOGO PNG - LeiMAM.png">
+        
+        <link rel="stylesheet" href="csscomum.css">
+        <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    :root {
+        --verde: #8EE918;
+        --amarelo: #FFE800;
+        --laranja: #FFAA00;
+        --marrom: #322700;
+        --bg-pagina: #F4F6F8;
+        --bg-card: #FFFFFF;
+        --texto2: #555555;
+        --borda: #E0E0E0;
+        --footer: #E3E7EB;
+    }
+    body {
+        background-color: var(--bg-pagina);
+        color: var(--marrom);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    #header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        padding: 12px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-bottom: 1px solid var(--borda);
+    }
+    #header-esquerda {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    #logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+    #logoimg {
+        height: 38px;
+        width: auto;
+    }
+    #logotexto {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--marrom);
+    }
+    #logotexto span {
+        color: var(--laranja);
+    }
+    .btn-menu-balao {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--marrom);
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 8px;
+        transition: background 0.2s;
+    }
+    .btn-menu-balao:hover {
+        background-color: var(--borda);
+    }
+    .menu-lateral-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 2000;
+    }
+    .menu-lateral-overlay.ativo {
+        opacity: 1;
+        visibility: visible;
+    }
+    .menu-lateral {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100%;
+        background-color: var(--bg-card);
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        padding: 25px 20px;
+        transition: left 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        z-index: 2001;
+    }
+    .menu-lateral.ativo {
+        left: 0;
+    }
+    .menu-lateral-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--borda);
+    }
+    .menu-lateral-header h3 {
+        font-size: 18px;
+        color: var(--marrom);
+    }
+    .btn-fechar {
+        background: none;
+        border: none;
+        font-size: 22px;
+        color: var(--texto2);
+        cursor: pointer;
+    }
+    .menu-lateral ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .menu-lateral a {
+        text-decoration: none;
+        color: var(--marrom);
+        font-weight: 600;
+        font-size: 15px;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .menu-lateral a:hover {
+        background-color: var(--bg-pagina);
+        color: var(--laranja);
+    }
+    #navbotao {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    #baluno {
+        text-decoration: none;
+        color: var(--marrom);
+        border: 2px solid var(--laranja);
+        padding: 7px 16px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: all 0.2s;
+    }
+    #baluno:hover {
+        background-color: var(--laranja);
+        color: var(--marrom);
+    }
+    #bprof {
+        text-decoration: none;
+        background-color: var(--verde);
+        color: var(--marrom);
+        padding: 9px 16px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+    #bprof:hover {
+        background-color: #7cd807;
+        transform: translateY(-2px);
+    }
+    #main {
+        flex: 1;
+        width: 90%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
+    .card-legal {
+        background-color: var(--bg-card);
+        border-radius: 12px;
+        padding: 35px;
+        border: 1px solid var(--borda);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .card-legal h1 {
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--marrom);
+        margin-bottom: 6px;
+    }
+    .data-atualizacao {
+        font-size: 13px;
+        color: var(--texto2);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--borda);
+    }
+    .lista-lgpd {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .lista-lgpd > li {
+        font-size: 14px;
+        color: var(--texto2);
+        line-height: 1.6;
+        padding-left: 28px;
+        position: relative;
+    }
+    .lista-lgpd > li::before {
+        content: attr(data-letra) ")";
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: 700;
+        color: var(--marrom);
+    }
+    .lista-sub {
+        margin-top: 10px;
+        margin-left: 10px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .lista-sub li {
+        font-size: 13.5px;
+        position: relative;
+        padding-left: 15px;
+    }
+    .lista-sub li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--laranja);
+        font-weight: bold;
+    }
+    .card-legal a {
+        color: var(--marrom);
+        font-weight: 600;
+        text-decoration: underline;
+    }
+    .card-legal a:hover {
+        color: var(--laranja);
+    }
+    #footer {
+        background-color: var(--footer);
+        padding: 20px 0;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid var(--borda);
+    }
+    #footer ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        gap: 30px;
+    }
+    #footer a {
+        text-decoration: none;
+        color: var(--marrom);
+        font-weight: 600;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    #footer a:hover {
+        text-decoration: underline;
+    }
+        </style>
+    </head>
+<body>
+
+    <header id="header">
+        <div id="header-esquerda">
+            <button class="btn-menu-balao" onclick="toggleMenu()" aria-label="Abrir Menu">☰</button>
+            <a href="index.html" id="logo">
+                <img src="LOGO PNG - LeiMAM.png" id="logoimg" alt="LeiMAM Logo">
+                <span id="logotexto">Lei<span>MAM</span></span>
+            </a>
+        </div>
+        <div id="navbotao">
+            <a href="loginaluno.html" id="baluno">Área do Aluno</a>
+            <a href="loginprofessor.html" id="bprof">Área do Professor</a>
+        </div>
+    </header>
+
+    <div class="menu-lateral-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-lateral" id="menuLateral">
+        <div class="menu-lateral-header">
+            <h3>Navegação</h3>
+            <button class="btn-fechar" onclick="toggleMenu()">&times;</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="1termos.html">Termos de Uso</a></li>
+                <li><a href="1privacidade.html">Política de Privacidade</a></li>
+                <li><a href="1lgpd.html">LGPD</a></li>
+                <li><a href="1suporte.html">Suporte</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main">
+        <section class="card-legal">
+            <h1>Lei Geral de Proteção de Dados Pessoais - LGPD</h1>
+            <p class="data-atualizacao">NUNCA Atualizado</p>
+            
+            <p style="margin-bottom: 20px;">A <strong>LeiMAM</strong> está preparada para atender ao que dispõe a Lei nº 13.709 de 2018. Conforme o que dispõe a lei:</p>
+
+            <ul class="lista-lgpd">
+                <li data-letra="a">
+                    A LeiMAM possui um Encarregado de Dados (DPO). Essa figura é a responsável geral pelas questões que envolvem essa legislação na empresa. Você pode falar com o DPO pelo e-mail <a href="mailto:lgpd@plataformaleimam.com.br">lgpd@plataformaleimam.com.br</a>. O atual encarregado de dados é Rodrigo Antônio Simões da Silva Pena.
+                </li>
+                <li data-letra="b">
+                    Nossa Política de Privacidade é pública e está disponível no site. Você também pode conhecê-la <a href="privacidade.html">clicando aqui</a>.
+                </li>
+                <li data-letra="c">
+                    A LeiMAM possui um plano de adequação à LGPD. Este plano orientou as primeiras ações e se manterá vigente por tempo indeterminado, de modo que estaremos em constante estágio de adequação e melhoria dos nossos sistemas e serviços.
+                </li>
+                <li data-letra="d">
+                    Se você perceber alguma inadequação, for vítima de algum incidente de vazamento envolvendo nossos serviços ou der causa à incidente de vazamento, comunique imediatamente ao Encarregado de Dados pelo e-mail <a href="mailto:lgpd@plataformaleimam.com.br">lgpd@plataformaleimam.com.br</a>.
+                </li>
+                <li data-letra="e">
+                    Os usuários, conforme prevê a legislação, podem solicitar informações relativamente aos dados que são coletados e ao tratamento dispensado a tais dados. Para isso, solicite através do e-mail <a href="mailto:lgpd@plataformaleimam.com.br">lgpd@plataformaleimam.com.br</a>.
+                </li>
+                <li data-letra="f">
+                    A LeiMAM coleta apenas os dados necessários para a prestação dos serviços oferecidos. Você pode solicitar a revogação do consentimento para tratamento dos dados a qualquer tempo, através do e-mail <a href="mailto:lgpd@plataformaleimam.com.br">lgpd@plataformaleimam.com.br</a>, neste caso, haverá interrupção da prestação do serviço.
+                </li>
+                <li data-letra="g">
+                    O tratamento de dados ocorre durante a prestação dos serviços. Os dados de identificação e contato do usuário são mantidos para a execução da nossa política de comunicação. Já os demais dados coletados são excluídos do sistema anualmente. As contas dos usuários são inativadas após 6 meses de inatividade.
+                </li>
+                <li data-letra="h">
+                    Os dados coletados pela Plataforma LeiMAM são processados e hospedados em nuvem em servidores Microsoft Azure, com o Data Center localizado na denominada “Região Sul do Brasil” em São Paulo, e com espelhamento para os EUA.<br>
+                    Dados podem eventualmente ser compartilhados com terceiros prestadores de serviços, como o Google Workspace, DropBox, Zendesk, Vindi e Trello, RDstation. Além disso, as redações também são compartilhadas com os professores corretores parceiros.
+                </li>
+                <li data-letra="i">
+                    Conforme o Art. 9º da LGPD, "o titular tem direito ao acesso facilitado às informações sobre o tratamento de seus dados, que deverão ser disponibilizadas de forma clara, adequada e ostensiva acerca de, entre outras características previstas em regulamentação para o atendimento do princípio do livre acesso:
+                    <ul class="lista-sub">
+                        <li>I - finalidade específica do tratamento;</li>
+                        <li>II - forma e duração do tratamento, observados os segredos comercial e industrial;</li>
+                        <li>III - identificação do controlador;</li>
+                        <li>IV - informações de contato do controlador;</li>
+                        <li>V - informações acerca do uso compartilhado de dados pelo controlador e a finalidade;</li>
+                        <li>VI - responsabilidades dos agentes que realizarão o tratamento; e</li>
+                        <li>VII - direitos do titular, com menção explícita aos direitos contidos no art. 18 desta Lei.</li>
+                    </ul>
+                </li>
+                <li data-letra="j">
+                    Conforme o Art. 18 da LGPD, o titular dos dados pessoais tem direito a obter do controlador, em relação aos dados do titular por ele tratados, a qualquer momento e mediante requisição:
+                    <ul class="lista-sub">
+                        <li>A confirmação da existência de tratamento;</li>
+                        <li>O acesso aos dados;</li>
+                        <li>A correção de dados incompletos, inexatos ou desatualizados;</li>
+                        <li>A anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com o disposto nesta Lei;</li>
+                        <li>A portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição expressa, de acordo com a regulamentação da autoridade nacional, observados os segredos comercial e industrial;</li>
+                        <li>A eliminação dos dados pessoais tratados com o consentimento do titular, exceto nas hipóteses previstas no art. 16 desta Lei;</li>
+                        <li>A informação das entidades públicas e privadas com as quais o controlador realizou uso compartilhado de dados;</li>
+                        <li>A informação sobre a possibilidade de não fornecer consentimento e sobre as consequências da negativa;</li>
+                        <li>A revogação do consentimento, nos termos do § 5º do art. 8º desta Lei.</li>
+                    </ul>
+                    <br>
+                    <p style="margin-bottom:6px;"><strong>§ 1º</strong> O titular dos dados pessoais tem o direito de peticionar em relação aos seus dados contra o controlador perante a autoridade nacional.</p>
+                    <p style="margin-bottom:6px;"><strong>§ 2º</strong> O titular pode opor-se a tratamento realizado com fundamento em uma das hipóteses de dispensa de consentimento, em caso de descumprimento ao disposto nesta Lei.</p>
+                    <p style="margin-bottom:6px;"><strong>§ 3º</strong> Os direitos previstos neste artigo serão exercidos mediante requerimento expresso do titular ou de representante legalmente constituído, a agente de tratamento.</p>
+                    <p style="margin-bottom:6px;"><strong>§ 4º</strong> Em caso de impossibilidade de adoção imediata da providência de que trata o § 3º deste artigo, o controlador enviará ao titular resposta em que poderá:</p>
+                    <ul class="lista-sub" style="margin-bottom:6px;">
+                        <li>I - comunicar que não é agente de tratamento dos dados e indicar, sempre que possível, o agente; ou</li>
+                        <li>II - indicar as razões de fato ou de direito que impedem a adoção imediata da providência.</li>
+                    </ul>
+                    <p style="margin-bottom:6px;"><strong>§ 5º</strong> O requerimento referido no § 3º deste artigo será atendido sem custos para o titular, nos prazos e nos termos previstos em regulamento.</p>
+                    <p style="margin-bottom:6px;"><strong>§ 6º</strong> O responsável deverá informar, de maneira imediata, aos agentes de tratamento com os quais tenha realizado uso compartilhado de dados a correção, a eliminação, a anonimização ou o bloqueio dos dados, para que repitam idêntico procedimento, exceto nos casos em que esta comunicação seja comprovadamente impossível ou implique esforço desproporcional.</p>
+                    <p style="margin-bottom:6px;"><strong>§ 7º</strong> A portabilidade dos dados pessoais a que se refere o inciso V do caput deste artigo não inclui dados que já tenham sido anonimizados pelo controlador.</p>
+                    <p><strong>§ 8º</strong> O direito a que se refere o § 1º deste artigo também poderá ser exercido perante os organismos de defesa do consumidor.</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <ul>
+            <li><a href="1termos.html">Termos de Uso</a></li>
+            <li><a href="1privacidade.html">Política de Privacidade</a></li>
+            <li><a href="1lgpd.html">LGPD</a></li>
+            <li><a href="1suporte.html">Suporte</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menuOverlay').classList.toggle('ativo');
+            document.getElementById('menuLateral').classList.toggle('ativo');
+        }
+    </script>
+
+</body>
+</html>

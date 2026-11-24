@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Administrativo | LeiMAM</title>
+    <link rel="icon" type="image/png" href="LOGO PNG - LeiMAM.png">
+    <link rel="stylesheet" href="cssadm.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="adm-faixa-topo">
+        <div class="adm-faixa-bloco-verde"></div>
+        <div class="adm-faixa-bloco-amarelo"></div>
+        <div class="adm-faixa-bloco-laranja"></div>
+    </div>
+
+    <div class="adm-barras-mob">
+        <button class="adm-botao-menu" id="admBotaoMenu" onclick="alternarMenu()">☰</button>
+        <span class="adm-logo-texto-mob">Lei<span>MAM</span></span>
+    </div>
+
+    <div class="adm-mascara-menu" id="admMascaraMenu" onclick="alternarMenu()"></div>
+
+    <div class="adm-conteiner-principal">
+        <aside class="adm-barra-lateral" id="admBarraLateral">
+            <a href="2-painel-administrador.php" class="adm-logo-area">
+                <img src="LOGO PNG - LeiMAM.png" alt="Logo LeiMAM" class="adm-logo-imagem">
+                <div class="adm-logo-textos-grupo">
+                    <span class="adm-logo-texto">Lei<span>MAM</span></span>
+                    <span class="adm-subtitulo-logo">Portal Administrativo</span>
+                </div>
+            </a>
+
+            <nav class="adm-nav-container">
+                <ul class="adm-menu-lista">
+                    <li><a href="2-painel-administrador.php" class="adm-menu-item-link">Início</a></li>
+                    <li><a href="2-propostas-administrador.php" class="adm-menu-item-link adm-ativo">Propostas</a></li>
+                    <li><a href="2-calendario-administrador.php" class="adm-menu-item-link">Calendário</a></li>
+                    <li><a href="2-corretores.php" class="adm-menu-item-link">Corretores</a></li>
+                    <li><a href="2-favoritos.php" class="adm-menu-item-link">Favoritos</a></li>
+                    <li><a href="2-arquivados.php" class="adm-menu-item-link">Arquivados</a></li>
+                </ul>
+
+                <div class="adm-menu-rodape">
+                    <a href="index.html" class="adm-menu-item-link adm-item-sair">
+                        <i data-lucide="arrow-left"></i> Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="adm-area-conteudo">
+            <header class="adm-cabecalho-pagina">
+                <div>
+                    <h1 class="adm-titulo-pagina">Criar Nova Proposta</h1>
+                    <p class="adm-subtitulo-pagina">Preencha as informações necessárias para disponibilizar um novo tema aos alunos.</p>
+                </div>
+            </header>
+
+            <form class="adm-formulario-container" action="2-funcoes-criar-propostas.php" method="POST" enctype="multipart/form-data">
+                
+                <div class="adm-form-grupo">
+                    <label class="adm-label-form" for="tituloProposta">Título / Tema da Redação</label>
+                    <input type="text" id="tituloProposta" name="tituloProposta" class="adm-input-form" placeholder="Ex: Caminhos para combater o racismo ambiental no Brasil" required>
+                </div>
+
+                <div class="adm-form-linha">
+                    <div class="adm-form-grupo">
+                        <label class="adm-label-form" for="statusHelper">Modo de Publicação</label>
+                        <select id="statusHelper" class="adm-seletor-form" onchange="alternarCamposDatas()">
+                            <option value="ativa" selected>Ativo (Abre imediatamente)</option>
+                            <option value="agendada">Agendado (Programar data de abertura)</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo ocultado por padrão, exibido apenas se for "agendada" -->
+                    <div class="adm-form-grupo" id="grupoPrazoAbertura" style="display: none;">
+                        <label class="adm-label-form" for="prazoAbertura">Data e Hora de Abertura</label>
+                        <input type="datetime-local" id="prazoAbertura" name="prazoAbertura" class="adm-input-form">
+                        <small class="adm-help-text">Data em que a proposta ficará visível aos alunos.</small>
+                    </div>
+
+                    <div class="adm-form-grupo">
+                        <label class="adm-label-form" for="prazoProposta">Data e Hora de Entrega</label>
+                        <input type="datetime-local" id="prazoProposta" name="prazoProposta" class="adm-input-form">
+                        <small class="adm-help-text">Deixe em branco caso seja uma redação <strong>sem data de entrega</strong>.</small>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO DE TURMAS VINCULADAS (12 TURMAS) -->
+                <div class="adm-form-grupo">
+                    <label class="adm-label-form">Turmas Vinculadas</label>
+                    <p class="adm-help-text">Selecione quais turmas terão acesso a esta proposta:</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+                        
+                        <!-- 1º ANO -->
+                        <div style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                            <strong style="color: #334155; font-size: 0.9rem;">1° SÉRIE</strong>
+                            <div class="adm-checkbox-grid" style="margin-top: 8px;">
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_1ainfo" value="1"> 1° A INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_1binfo" value="1"> 1° B INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_1arede" value="1"> 1° A REDES</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_1brede" value="1"> 1° B REDES</label>
+                            </div>
+                        </div>
+
+                        <!-- 2º ANO -->
+                        <div style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                            <strong style="color: #334155; font-size: 0.9rem;">2° SÉRIE</strong>
+                            <div class="adm-checkbox-grid" style="margin-top: 8px;">
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_2ainfo" value="1"> 2° A INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_2binfo" value="1"> 2° B INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_2arede" value="1"> 2° A REDES</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_2brede" value="1"> 2° B REDES</label>
+                            </div>
+                        </div>
+
+                        <!-- 3º ANO -->
+                        <div style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                            <strong style="color: #334155; font-size: 0.9rem;">3° SÉRIE</strong>
+                            <div class="adm-checkbox-grid" style="margin-top: 8px;">
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_3ainfo" value="1"> 3° A INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_3binfo" value="1"> 3° B INFO</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_3arede" value="1"> 3° A REDES</label>
+                                <label class="adm-checkbox-item"><input type="checkbox" name="t_3brede" value="1"> 3° B REDES</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="adm-form-grupo">
+                    <label class="adm-label-form" for="textoApoio">Texto de Apoio / Instruções</label>
+                    <textarea id="textoApoio" name="textoApoio" class="adm-textarea-form" rows="8" placeholder="Insira aqui o texto de apoio..." required></textarea>
+                </div>
+
+                <div class="adm-form-grupo">
+                    <label class="adm-label-form" for="arquivoPDF">Anexo de Apoio (PDF / Imagem)</label>
+                    <input type="file" id="arquivoPDF" name="arquivoPDF" class="adm-input-file" accept=".pdf,.png,.jpg,.jpeg">
+                </div>
+
+                <div class="adm-form-acoes">
+                    <a href="2-propostas-administrador.php" class="adm-botao-cancelar">Cancelar</a>
+                    <button type="submit" class="adm-botao-salvar">Salvar e Publicar</button>
+                </div>
+
+            </form>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function alternarMenu() {
+            const barra = document.getElementById('admBarraLateral');
+            const mascara = document.getElementById('admMascaraMenu');
+            barra.classList.toggle('adm-aberto');
+            mascara.classList.toggle('adm-ativo');
+        }
+
+        function alternarCamposDatas() {
+            const statusSelect = document.getElementById('statusHelper').value;
+            const campoAbertura = document.getElementById('grupoPrazoAbertura');
+            const inputAbertura = document.getElementById('prazoAbertura');
+
+            if (statusSelect === 'agendada') {
+                campoAbertura.style.display = 'block';
+                inputAbertura.required = true;
+            } else {
+                campoAbertura.style.display = 'none';
+                inputAbertura.required = false;
+                inputAbertura.value = '';
+            }
+        }
+        function ajustarAlturaMobile() {
+            const barraLateral = document.getElementById('admBarraLateral');
+            if (barraLateral) {
+                // Usa a altura real visível da janela do navegador no celular
+                barraLateral.style.height = window.innerHeight + 'px';
+            }
+            }
+
+            window.addEventListener('resize', ajustarAlturaMobile);
+            window.addEventListener('orientationchange', ajustarAlturaMobile);
+            // Executa assim que a página carregar
+            window.addEventListener('DOMContentLoaded', ajustarAlturaMobile);
+    </script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | LeiMAM</title>
+    <link rel="icon" type="image/png" href="LOGO PNG - LeiMAM.png">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --verde: #8EE918;    /* Gestor */
+            --amarelo: #FFE800;  /* Professor */
+            --laranja: #FFAA00;  /* Aluno */
+            --marrom: #322700;
+            --bg-pagina: #FFFFFF;
+            --texto2: #555555;
+            --borda: #DCE0E5;
+        }
+
+        body {
+            height: 100vh;
+            max-height: 100vh;
+            width: 100vw;
+            display: flex;
+            background-color: var(--bg-pagina);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Barra Colorida no Topo (Estilo SIGEduc) */
+        .top-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            display: flex;
+            z-index: 100;
+        }
+
+        .stripe-green { width: 33.33%; background-color: var(--verde); }
+        .stripe-yellow { width: 33.33%; background-color: var(--amarelo); }
+        .stripe-orange { width: 33.34%; background-color: var(--laranja); }
+
+        /* Lado Esquerdo - Login sem o Balão Branco (40%) */
+        .login-container {
+            width: 40%;
+            height: 100vh;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--texto2);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .btn-back:hover {
+            color: var(--marrom);
+        }
+
+        /* Conteúdo do Formulário */
+        .login-content {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 0.2rem;
+        }
+
+        .brand-header img {
+            height: 46px;
+            width: auto;
+        }
+
+        .brand-header span {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--marrom);
+            letter-spacing: -0.5px;
+        }
+
+        .segmented-control {
+            display: flex;
+            background-color: #F1F3F5;
+            border-radius: 10px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--texto2);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tab-btn.active-aluno {
+            background-color: var(--laranja);
+            color: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--texto2);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            color: #888;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 12px 12px 42px;
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #FAFAFA;
+            transition: all 0.2s ease;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--laranja);
+            background-color: #FFFFFF;
+        }
+
+        .forgot-pass {
+            align-self: flex-end;
+            font-size: 0.85rem;
+            color: var(--texto2);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-pass:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--laranja);
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            margin-top: 0.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.92;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #AAA;
+            font-size: 0.8rem;
+            margin: 0.2rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        .btn-gestor {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+            background-color: #FAFAFA;
+            color: var(--texto2);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: block;
+        }
+
+        .btn-gestor:hover {
+            background-color: #F1F3F5;
+        }
+
+        /* Lado Direito - Imagem com Gradiente (60%) */
+        .image-container {
+            width: 60%;
+            height: 100vh;
+            background: #EAEAEA;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Degradê Inferior na Imagem */
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20rem 2.5rem 2rem 2.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-sizing: border-box;
+        }
+
+        .overlay-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .overlay-brand img {
+            height: 38px;
+            width: auto;
+        }
+
+        .overlay-brand span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .overlay-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            max-width: 500px;
+        }
+
+        @media (max-width: 850px) {
+            .image-container {
+                display: none;
+            }
+            .login-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Faixa de Cores Superior -->
+    <div class="top-stripe">
+        <div class="stripe-green"></div>
+        <div class="stripe-yellow"></div>
+        <div class="stripe-orange"></div>
+    </div>
+
+    <!-- Lado Esquerdo -->
+    <div class="login-container">
+        <a href="index.html" class="btn-back">
+            <i data-lucide="arrow-left"></i> Voltar
+        </a>
+
+        <div class="login-content">
+            <div class="brand-header">
+                <img src="LOGO PNG - LeiMAM.png" alt="Logo LeiMAM">
+                <span>LeiMAM</span>
+            </div>
+
+            <div class="segmented-control">
+                <a href="1-login-aluno.html" class="tab-btn active-aluno">
+                    <i data-lucide="user"></i> Aluno
+                </a>
+                <a href="1-login-professor.html" class="tab-btn">
+                    <i data-lucide="graduation-cap"></i> Corretor
+                </a>
+            </div>
+
+            <form action="1-login-aluno.php" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="matricula" name="matricula" placeholder="Sua matrícula" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <a href="1-suporte.html" class="forgot-pass">Esqueceu a senha?</a>
+
+                <button type="submit" class="btn-submit">
+                    Validar <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <a href="1-login-administrador.html" class="btn-gestor">Sou um Administrador</a>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="ceep.jpg" alt="">
+        
+        <div class="image-overlay">
+            <div class="overlay-brand">
+                <img src="LOGO PNG - LeiMAM.png" alt="Logo LeiMAM">
+                <span>LeiMAM</span>
+            </div>
+            <p class="overlay-text">Plataforma de Redação do CEEP Professsora Lourdinha Guerra — Transformando a aprendizagem e potencializando a gestão educacional.</p>
+        </div>
+    </div>
+
+    <script>
+    lucide.createIcons();
+    </script>
+</body>
+</html>

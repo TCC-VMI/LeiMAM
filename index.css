@@ -1,0 +1,449 @@
+* {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+                :root {
+                    --verde: #8EE918;
+                    --amarelo: #FFE800;
+                    --laranja: #FFAA00;
+                    --marrom: #322700;
+                    --bg-pagina: #F4F6F8;
+                    --bg-card: #FFFFFF;
+                    --texto2: #555555;
+                    --borda: #E0E0E0;
+                    --footer: #E3E7EB;
+                }
+                body {
+                    background-color: var(--bg-pagina);
+                    color: var(--marrom);
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                }
+                    #header {
+                        position: sticky;
+                        top: 0;
+                        z-index: 1000;
+                        background-color: rgba(255, 255, 255, 0.95);
+                        backdrop-filter: blur(8px);
+                        padding: 12px 5%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                        border-bottom: 1px solid var(--borda);
+                    }
+                        #logo {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            text-decoration: none;
+                        }
+                            #logoimg {
+                                height: 38px;
+                                width: auto;
+                            }
+                            #logotexto {
+                                font-size: 22px;
+                                font-weight: 800;
+                                color: var(--marrom);
+                            }
+                                #logotexto span {
+                                    color: var(--laranja);
+                                }
+                        #menu ul {
+                            display: flex;
+                            list-style: none;
+                            gap: 25px;
+                            align-items: center;
+                        }
+                            #menu a {
+                                text-decoration: none;
+                                color: var(--marrom);
+                                font-weight: 600;
+                                font-size: 14px;
+                                transition: color 0.2s;
+                            }
+                            #menu a:hover {
+                                color: var(--laranja);
+                            }
+                        #navbotao {
+                            display: flex;
+                            gap: 10px;
+                            align-items: center;
+                        }
+                            #baluno {
+                                text-decoration: none;
+                                color: var(--marrom);
+                                border: 2px solid var(--laranja);
+                                padding: 7px 16px;
+                                border-radius: 25px;
+                                font-weight: 700;
+                                font-size: 13px;
+                                transition: all 0.2s;
+                            }
+                            #baluno:hover {
+                                background-color: var(--laranja);
+                                color: var(--marrom);
+                            }
+                            #bprof {
+                                text-decoration: none;
+                                background-color: var(--verde);
+                                color: var(--marrom);
+                                padding: 9px 16px;
+                                border-radius: 25px;
+                                font-weight: 700;
+                                font-size: 13px;
+                                transition: transform 0.2s, background-color 0.2s;
+                            }
+                            #bprof:hover {
+                                background-color: #7cd807;
+                                transform: translateY(-2px);
+                            }
+                    #main {
+                        flex: 1;
+                        width: 90%;
+                        max-width: 1100px;
+                        margin: 0 auto;
+                        padding: 30px 0;
+                    }
+                        #apresentacao {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 40px;
+                            margin-bottom: 50px;
+                        }
+                            #apresentacaotexto {
+                                flex: 1;
+                            }
+                                #apresentacaotexto h1 {
+                                    font-size: 38px;
+                                    line-height: 1.15;
+                                    color: var(--marrom);
+                                    font-weight: 800;
+                                    margin-bottom: 16px;
+                                }
+                                #apresentacaotexto p {
+                                    font-size: 15px;
+                                    color: var(--texto2);
+                                    line-height: 1.5;
+                                    margin-bottom: 25px;
+                                    max-width: 480px;
+                                }
+                                #apresentacaobotao {
+                                    display: flex;
+                                    gap: 15px;
+                                }
+                                    #bsaiba {
+                                        background-color: transparent;
+                                        color: var(--marrom);
+                                        border: 2px solid var(--marrom);
+                                        padding: 10px 24px;
+                                        border-radius: 25px;
+                                        text-decoration: none;
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        transition: all 0.2s;
+                                    }
+                                    #bsaiba:hover {
+                                        background-color: var(--marrom);
+                                        color: #fff;
+                                    }
+                            #apresentacaoimagem {
+                                flex: 1;
+                                display: flex;
+                                justify-content: center;
+                            }
+                                #apresentacaoimagem svg {
+                                    width: 100%;
+                                    max-width: 420px;
+                                    height: auto;
+                                }
+                        #comofunciona {
+                            text-align: center;
+                            margin-bottom: 50px;
+                        }
+                            #comofunciona h2 {
+                                font-size: 30px;
+                                font-weight: 800;
+                                color: var(--marrom);
+                                margin-bottom: 4px;
+                            }
+                            #subtitulo-como {
+                                font-size: 14px;
+                                color: var(--texto2);
+                                margin-bottom: 30px;
+                            }
+                            #passos {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: stretch;
+                                position: relative;
+                                gap: 15px;
+                            }
+                                #passos::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    left: 10%;
+                                    right: 10%;
+                                    height: 2px;
+                                    background-color: var(--borda);
+                                    z-index: 1;
+                                }
+                                .passoitem {
+                                    flex: 1;
+                                    background-color: var(--bg-card);
+                                    border-radius: 10px;
+                                    padding: 20px 15px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    position: relative;
+                                    z-index: 2;
+                                    border: 2px solid var(--borda);
+                                    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+                                    transition: background-color 0.2s ease, color 0.2s ease;
+                                }
+
+                                #passo1 { border-color: var(--verde); }
+                                #passo2 { border-color: var(--amarelo); }
+                                #passo3 { border-color: var(--laranja); }
+                                #passo4 { border-color: var(--marrom); }
+
+                                #passo1:hover { background-color: var(--verde); }
+                                #passo2:hover { background-color: var(--amarelo); }
+                                #passo3:hover { background-color: var(--laranja); }
+                                #passo4:hover { background-color: var(--marrom); }
+
+                                .passoitem:hover .passonumero,
+                                .passoitem:hover h4,
+                                .passoitem:hover p { color: var(--marrom);}
+
+                                #passo4:hover .passonumero,
+                                #passo4:hover h4,
+                                #passo4:hover p { color: #FFFFFF;}
+
+                                    .passonumero {
+                                        font-size: 11px;
+                                        font-weight: 800;
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.8px;
+                                        color: var(--texto2);
+                                        margin-bottom: 6px;
+                                        transition: color 0.2s ease;
+                                    }
+                                    .passoitem h4 {
+                                        font-size: 15px;
+                                        font-weight: 700;
+                                        color: var(--marrom);
+                                        margin-bottom: 8px;
+                                        transition: color 0.2s ease;
+                                    }
+                                    .passoitem p {
+                                        font-size: 12.5px;
+                                        color: var(--texto2);
+                                        line-height: 1.4;
+                                        transition: color 0.2s ease;
+                                    }
+                        #balao {
+                            display: flex;
+                            gap: 15px;
+                            margin-bottom: 50px;
+                            align-items: flex-start;
+                        }
+                            .balaoexpansivel {
+                                flex: 1;
+                                background-color: var(--bg-card);
+                                border-radius: 12px;
+                                padding: 18px;
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+                                transition: transform 0.2s, box-shadow 0.2s;
+                                border: none; 
+                            }
+                            .balaoexpansivel:hover {
+                                transform: translateY(-3px);
+                                box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+                            }
+                                summary {
+                                    list-style: none;
+                                    cursor: pointer;
+                                    outline: none;
+                                }
+                                summary::-webkit-details-marker {
+                                    display: none;
+                                }
+                                    .balaoheader {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 10px;
+                                        margin-bottom: 8px;
+                                    }
+                                        .icone {
+                                            width: 34px;
+                                            height: 34px;
+                                            border-radius: 8px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 15px;
+                                        }
+                                            #balaogestor .icone { 
+                                                background-color: rgba(142, 233, 24, 0.2);
+                                                color: var(--marrom); 
+                                            }
+                                            #balaoprof .icone { 
+                                                background-color: rgba(255, 232, 0, 0.3); 
+                                                color: var(--marrom); 
+                                            }
+                                            #balaoaluno .icone { 
+                                                background-color: rgba(255, 170, 0, 0.2); 
+                                                color: var(--marrom); 
+                                            }
+                                        .balaoheader h3 {
+                                            font-size: 16px;
+                                            font-weight: 700;
+                                            color: var(--marrom);
+                                        }
+                                    .balaoresumo {
+                                        font-size: 13px;
+                                        color: var(--texto2);
+                                        line-height: 1.4;
+                                        margin-bottom: 10px;
+                                    }
+                                    .bexpandir {
+                                        font-weight: 700;
+                                        font-size: 11px;
+                                        color: var(--marrom);
+                                        opacity: 0.8;
+                                        display: inline-block;
+                                    }
+                                .balaoconteudo {
+                                    margin-top: 12px;
+                                    padding-top: 12px;
+                                    border-top: 1px dashed var(--borda);
+                                }
+                                    .balaoconteudo ul {
+                                        list-style: none;
+                                    }
+                                        .balaoconteudo li {
+                                            font-size: 12.5px;
+                                            color: var(--marrom);
+                                            margin-bottom: 6px;
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 6px;
+                                        }
+                                        .balaoconteudo li::before {
+                                            content: "✓";
+                                            font-weight: bold;
+                                        }
+                                        #balaogestor .balaoconteudo li::before { color: #5eb000; }
+                                        #balaoprof .balaoconteudo li::before { color: #d4c000; }
+                                        #balaoaluno .balaoconteudo li::before { color: var(--laranja); }
+                        #sobre {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 40px;
+                            margin-bottom: 50px;
+                            padding: 10px 0;
+                        }
+                            #sobretexto {
+                                flex: 1;
+                            }
+                                #sobretexto h2 {
+                                    font-size: 24px;
+                                    font-weight: 800;
+                                    color: var(--marrom);
+                                    margin-bottom: 16px;
+                                }
+                                #sobretexto p {
+                                    font-size: 15px;
+                                    color: var(--texto2);
+                                    line-height: 1.5;
+                                    margin-bottom: 16px;
+                                    text-align: justify;
+                                }
+                                #sobretexto p:last-child {
+                                    margin-bottom: 0;
+                                }
+                            #sobreimagem {
+                                flex: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                                .imagem-placeholder {
+                                    width: 100%;
+                                    max-width: 600px;
+                                    height: 320px;
+                                    background-color: #E8ECEF;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: var(--texto2);
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                }
+                    #footer {
+                        background-color: var(--footer);
+                        padding: 20px 0;
+                        text-align: center;
+                        margin-top: auto;
+                        border-top: 1px solid var(--borda);
+                    }
+                        #footer ul {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            list-style: none;
+                            gap: 30px;
+                        }
+                            #footer a {
+                                text-decoration: none;
+                                color: var(--marrom);
+                                font-weight: 600;
+                                font-size: 13px;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 6px;
+                            }
+                            #footer a:hover {
+                                text-decoration: underline;
+                            }
+                            .footer-icon {
+                                width: 16px;
+                                height: 16px;
+                                fill: var(--marrom);
+                            }
+                @media (max-width: 850px) {
+                    #apresentacao, #sobre {
+                        flex-direction: column;
+                        text-align: center;
+                    }
+                        #apresentacaotexto p {
+                            margin: 0 auto 25px auto;
+                        }
+                        #apresentacaobotao {
+                            justify-content: center;
+                        }
+                    #passos {
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+                        #passos::before {
+                            display: none;
+                        }
+                    #balao {
+                        flex-direction: column;
+                    }
+                    #menu ul {
+                        display: none;
+                    }
+                }

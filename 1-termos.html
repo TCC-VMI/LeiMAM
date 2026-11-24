@@ -1,0 +1,332 @@
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Termos de Uso | LeiMAM</title>
+        <link rel="icon" type="image/png" href="D:\TCC - 2026\CODIGO - TCC\LOGO PNG - LeiMAM.png">
+        
+        <link rel="" href="">
+        <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    :root {
+        --verde: #8EE918;
+        --amarelo: #FFE800;
+        --laranja: #FFAA00;
+        --marrom: #322700;
+        --bg-pagina: #F4F6F8;
+        --bg-card: #FFFFFF;
+        --texto2: #555555;
+        --borda: #E0E0E0;
+        --footer: #E3E7EB;
+    }
+    body {
+        background-color: var(--bg-pagina);
+        color: var(--marrom);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    #header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        padding: 12px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-bottom: 1px solid var(--borda);
+    }
+    #header-esquerda {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    #logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+    #logoimg {
+        height: 38px;
+        width: auto;
+    }
+    #logotexto {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--marrom);
+    }
+    #logotexto span {
+        color: var(--laranja);
+    }
+    /* Botão do Menu Hambúrguer / Balão */
+    .btn-menu-balao {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--marrom);
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 8px;
+        transition: background 0.2s;
+    }
+    .btn-menu-balao:hover {
+        background-color: var(--borda);
+    }
+    /* Painel Lateral (Menu Balão) */
+    .menu-lateral-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 2000;
+    }
+    .menu-lateral-overlay.ativo {
+        opacity: 1;
+        visibility: visible;
+    }
+    .menu-lateral {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100%;
+        background-color: var(--bg-card);
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        padding: 25px 20px;
+        transition: left 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        z-index: 2001;
+    }
+    .menu-lateral.ativo {
+        left: 0;
+    }
+    .menu-lateral-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--borda);
+    }
+    .menu-lateral-header h3 {
+        font-size: 18px;
+        color: var(--marrom);
+    }
+    .btn-fechar {
+        background: none;
+        border: none;
+        font-size: 22px;
+        color: var(--texto2);
+        cursor: pointer;
+    }
+    .menu-lateral ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .menu-lateral a {
+        text-decoration: none;
+        color: var(--marrom);
+        font-weight: 600;
+        font-size: 15px;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .menu-lateral a:hover {
+        background-color: var(--bg-pagina);
+        color: var(--laranja);
+    }
+    #navbotao {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    #baluno {
+        text-decoration: none;
+        color: var(--marrom);
+        border: 2px solid var(--laranja);
+        padding: 7px 16px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: all 0.2s;
+    }
+    #baluno:hover {
+        background-color: var(--laranja);
+        color: var(--marrom);
+    }
+    #bprof {
+        text-decoration: none;
+        background-color: var(--verde);
+        color: var(--marrom);
+        padding: 9px 16px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+    #bprof:hover {
+        background-color: #7cd807;
+        transform: translateY(-2px);
+    }
+    #main {
+        flex: 1;
+        width: 90%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
+    .card-legal {
+        background-color: var(--bg-card);
+        border-radius: 12px;
+        padding: 35px;
+        border: 1px solid var(--borda);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .card-legal h1 {
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--marrom);
+        margin-bottom: 6px;
+    }
+    .data-atualizacao {
+        font-size: 13px;
+        color: var(--texto2);
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--borda);
+    }
+    .card-legal h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--marrom);
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+    .card-legal p {
+        font-size: 14px;
+        color: var(--texto2);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    #footer {
+        background-color: var(--footer);
+        padding: 20px 0;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid var(--borda);
+    }
+    #footer ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        gap: 30px;
+    }
+    #footer a {
+        text-decoration: none;
+        color: var(--marrom);
+        font-weight: 600;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    #footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+    <header id="header">
+        <div id="header-esquerda">
+            <button class="btn-menu-balao" onclick="toggleMenu()" aria-label="Abrir Menu">☰</button>
+            <a href="index.html" id="logo">
+                <img src="LOGO PNG - LeiMAM.png" id="logoimg" alt="LeiMAM Logo">
+                <span id="logotexto">Lei<span>MAM</span></span>
+            </a>
+        </div>
+        <div id="navbotao">
+            <a href="1-login-aluno.html" id="baluno">Área do Aluno</a>
+            <a href="1-login-professor.html" id="bprof">Área do Professor</a>
+        </div>
+    </header>
+
+    <!-- Menu Balão / Lateral -->
+    <div class="menu-lateral-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-lateral" id="menuLateral">
+        <div class="menu-lateral-header">
+            <h3>Navegação</h3>
+            <button class="btn-fechar" onclick="toggleMenu()">&times;</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="1-termos.html">Termos de Uso</a></li>
+                <li><a href="1-privacidade.html">Política de Privacidade</a></li>
+                <li><a href="1-lgpd.html">LGPD</a></li>
+                <li><a href="1-suporte.html">Suporte</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main">
+        <section class="card-legal">
+            <h1>Termos de Uso</h1>
+            <p class="data-atualizacao">Última atualização: NUNCA Atualizado</p>
+
+            <h2>1. Aceitação dos Termos</h2>
+            <p>Ao utilizar a plataforma <strong>LeiMAM</strong>, você concorda com os termos aqui apresentados. Caso não concorde com alguma diretriz, orientamos que descontinue o uso de nossas ferramentas.</p>
+
+            <h2>2. Descrição da Plataforma</h2>
+            <p>O LeiMAM disponibiliza tecnologias pedagógicas voltadas ao acompanhamento, gestão e prática de redações escolares.</p>
+
+            <h2>3. Cadastro e Credenciais</h2>
+            <p>O usuário é responsável por manter o sigilo de seus dados de login e pela exatidão das informações cadastradas na plataforma.</p>
+
+            <h2>4. Conduta do Usuário</h2>
+            <p>É vedado o envio de materiais inadequados, ilegais ou de autoria alheia sem autorização prévia, garantindo o bom ambiente de aprendizado.</p>
+
+            <h2>5. Alterações nos Termos</h2>
+            <p>Estes termos podem ser atualizados periodicamente para refletir melhorias no sistema ou mudanças regulatórias.</p>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <ul>
+            <li><a href="1-termos.html">Termos de Uso</a></li>
+            <li><a href="1-privacidade.html">Política de Privacidade</a></li>
+            <li><a href="1-lgpd.html">LGPD</a></li>
+            <li><a href="1-suporte.html">Suporte</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menuOverlay').classList.toggle('ativo');
+            document.getElementById('menuLateral').classList.toggle('ativo');
+        }
+    </script>
+
+</body>
+</html>

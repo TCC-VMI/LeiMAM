@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>LGPD | LeiMAM</title>
+        <link rel="icon" type="image/png" href="LOGO PNG - LeiMAM.png">
+        
+        <link rel="stylesheet" href="csscomum.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --verde: #8EE918;
+            --amarelo: #FFE800;
+            --laranja: #FFAA00;
+            --marrom: #322700;
+            --bg-pagina: #F4F6F8;
+            --bg-card: #FFFFFF;
+            --texto2: #555555;
+            --borda: #E0E0E0;
+            --footer: #E3E7EB;
+        }
+        body {
+            background-color: var(--bg-pagina);
+            color: var(--marrom);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--borda);
+        }
+        #header-esquerda {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        #logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        #logoimg {
+            height: 38px;
+            width: auto;
+        }
+        #logotexto {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--marrom);
+        }
+        #logotexto span {
+            color: var(--laranja);
+        }
+        .btn-menu-balao {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--marrom);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .btn-menu-balao:hover {
+            background-color: var(--borda);
+        }
+        .menu-lateral-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+        .menu-lateral-overlay.ativo {
+            opacity: 1;
+            visibility: visible;
+        }
+        .menu-lateral {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--bg-card);
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+            padding: 25px 20px;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            z-index: 2001;
+        }
+        .menu-lateral.ativo {
+            left: 0;
+        }
+        .menu-lateral-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--borda);
+        }
+        .menu-lateral-header h3 {
+            font-size: 18px;
+            color: var(--marrom);
+        }
+        .btn-fechar {
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--texto2);
+            cursor: pointer;
+        }
+        .menu-lateral ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .menu-lateral a {
+            text-decoration: none;
+            color: var(--marrom);
+            font-weight: 600;
+            font-size: 15px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-lateral a:hover {
+            background-color: var(--bg-pagina);
+            color: var(--laranja);
+        }
+        #navbotao {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        #baluno {
+            text-decoration: none;
+            color: var(--marrom);
+            border: 2px solid var(--laranja);
+            padding: 7px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        #baluno:hover {
+            background-color: var(--laranja);
+            color: var(--marrom);
+        }
+        #bprof {
+            text-decoration: none;
+            background-color: var(--verde);
+            color: var(--marrom);
+            padding: 9px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        #bprof:hover {
+            background-color: #7cd807;
+            transform: translateY(-2px);
+        }
+        #main {
+            flex: 1;
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .header-pagina {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .header-pagina h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--marrom);
+            margin-bottom: 8px;
+        }
+        .header-pagina p {
+            font-size: 15px;
+            color: var(--texto2);
+        }
+        .card-suporte {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--borda);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 25px;
+        }
+        .card-suporte h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--marrom);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .passos-manual {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .passo-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .passo-numero {
+            background-color: var(--amarelo);
+            color: var(--marrom);
+            font-weight: 800;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 15px;
+        }
+        .passo-conteudo h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--marrom);
+            margin-bottom: 4px;
+        }
+        .passo-conteudo p {
+            font-size: 14px;
+            color: var(--texto2);
+            line-height: 1.5;
+        }
+        .caixa-alerta {
+            background-color: rgba(255, 170, 0, 0.1);
+            border-left: 4px solid var(--laranja);
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .caixa-alerta p {
+            font-size: 14px;
+            color: var(--marrom);
+            line-height: 1.5;
+        }
+        /* Perguntas Frequentes (FAQ) */
+        .faq-item {
+            border-bottom: 1px solid var(--borda);
+            padding: 15px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--marrom);
+            margin-bottom: 6px;
+        }
+        .faq-item p {
+            font-size: 14px;
+            color: var(--texto2);
+            line-height: 1.5;
+        }
+        #footer {
+            background-color: var(--footer);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid var(--borda);
+        }
+        #footer ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 30px;
+        }
+        #footer a {
+            text-decoration: none;
+            color: var(--marrom);
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div id="header-esquerda">
+            <button class="btn-menu-balao" onclick="toggleMenu()" aria-label="Abrir Menu">☰</button>
+            <a href="index.html" id="logo">
+                <img src="LOGO PNG - LeiMAM.png" id="logoimg" alt="LeiMAM Logo">
+                <span id="logotexto">Lei<span>MAM</span></span>
+            </a>
+        </div>
+        <div id="navbotao">
+            <a href="1-login-aluno.html" id="baluno">Área do Aluno</a>
+            <a href="1-login-professor.html" id="bprof">Área do Professor</a>
+        </div>
+    </header>
+
+    <div class="menu-lateral-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-lateral" id="menuLateral">
+        <div class="menu-lateral-header">
+            <h3>Navegação</h3>
+            <button class="btn-fechar" onclick="toggleMenu()">&times;</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="1-termos.html">Termos de Uso</a></li>
+                <li><a href="1-privacidade.html">Política de Privacidade</a></li>
+                <li><a href="1-lgpd.html">LGPD</a></li>
+                <li><a href="1-suporte.html">Suporte</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main">
+        <div class="header-pagina">
+            <h1>Suporte</h1>
+            <p>Guia de ajuda para acesso, utilização e resolução de dúvidas na plataforma LeiMAM.</p>
+        </div>
+
+        <!-- Bloco 1: Manual de Acesso e Login -->
+        <section class="card-suporte">
+            <h2>Como Acessar a Plataforma</h2>
+            <div class="passos-manual">
+                <div class="passo-item">
+                    <div class="passo-numero">1</div>
+                    <div class="passo-conteudo">
+                        <h3>Banco de Dados Unificado</h3>
+                        <p>O sistema de login da plataforma <strong>LeiMAM</strong> é integrado diretamente ao banco de dados oficial do Centro Estadual de Educação Profissional Professora Lourdinha Guerra (CEEPPLG). Suas credenciais são as mesmas utilizadas nos sistemas escolares.</p>
+                    </div>
+                </div>
+
+                <div class="passo-item">
+                    <div class="passo-numero">2</div>
+                    <div class="passo-conteudo">
+                        <h3>Escolha seu tipo de perfil</h3>
+                        <p>Na barra superior, clique em <strong>"Área do Aluno"</strong> ou <strong>"Área do Professor"</strong> de acordo com o seu perfil cadastrado na instituição.</p>
+                    </div>
+                </div>
+
+                <div class="passo-item">
+                    <div class="passo-numero">3</div>
+                    <div class="passo-conteudo">
+                        <h3>Insira suas credenciais escolares</h3>
+                        <p>Digite sua matrícula e a mesma senha utilizada nos computadores dos laboratórios.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="caixa-alerta">
+                <p><strong>Problemas com o Login?</strong><br>
+                Se a sua senha não estiver funcionando ou o sistema indicar que a conta não foi encontrada, não tente criar um novo cadastro. Por se tratar do mesmo banco de dados da escola, procure diretamente a <strong>gestão escolar</strong> ou a <strong>professora Leidivânia</strong> para verificar o status do seu cadastro e atualizar suas credenciais, caso necessário.</p>
+            </div>
+        </section>
+
+        <!-- Bloco 2: Canais de Contato Directo -->
+        <section class="card-suporte">
+            <h2>Canais de Atendimento Direto</h2>
+            <p style="font-size: 14px; color: var(--texto2); margin-bottom: 15px; line-height: 1.6;">
+                Para quaisquer dúvidas pedagógicas, correções de erro de cadastro, alterações de turma ou problemas operacionais no envio das redações, entre em contato com os responsáveis presenciais:
+            </p>
+            <ul style="list-style: none; font-size: 14px; color: var(--marrom); display: flex; flex-direction: column; gap: 10px;">
+                <li><strong>Professora Leidivania:</strong> Atendimento presencial na sala dos professores para suporte sobre as atividades e envio de textos.</li>
+                <li><strong>Gestão Escolar:</strong> Atendimento na secretaria/direção para ajuste de matrícula, recuperação de acesso ou inconsistências de dados.</li>
+            </ul>
+        </section>
+
+        <!-- Bloco 3: Perguntas Frequentes (FAQ) -->
+        <section class="card-suporte">
+            <h2>Perguntas Frequentes (FAQ)</h2>
+            
+            <div class="faq-item">
+                <h3>Posso mudar minha senha diretamente pelo site do LeiMAM?</h3>
+                <p>Não. Como a senha é vinculada ao sistema da escola, qualquer alteração deve ser solicitada à gestão.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Minha conta está inativa ou bloqueada. O que fazer?</h3>
+                <p>Procure a gestão escolar ou fale diretamente com a professora Leidivânia para análise do vínculo na plataforma.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Enviei a redação errada. Como posso substituir?</h3>
+                <p>Entre em contato presencialmente com a professora Leidivania para que ela possa liberar novamente o envio da atividade no painel de correções.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <ul>
+            <li><a href="1-termos.html">Termos de Uso</a></li>
+            <li><a href="1-privacidade.html">Política de Privacidade</a></li>
+            <li><a href="1-lgpd.html">LGPD</a></li>
+            <li><a href="1-suporte.html">Suporte</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menuOverlay').classList.toggle('ativo');
+            document.getElementById('menuLateral').classList.toggle('ativo');
+        }
+    </script>
+
+</body>
+</html>
